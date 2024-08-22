@@ -1,6 +1,7 @@
 package com.company.restaurantmanagemant.expose.controller;
 
 
+import com.company.restaurantmanagemant.application.service.CategoryService;
 import com.company.restaurantmanagemant.persistence.entity.Category;
 import com.company.restaurantmanagemant.persistence.repository.CategoryRepository;
 import lombok.RequiredArgsConstructor;
@@ -19,9 +20,9 @@ import java.util.List;
 @RequestMapping("/categories")
 public class CategoryController {
 
+    /*
 
     private CategoryRepository categoryRepository;
-
 
     public CategoryController(CategoryRepository categoryRepository) {
         this.categoryRepository = categoryRepository;
@@ -35,11 +36,31 @@ public class CategoryController {
         return  categories;
     }
 
-
     @GetMapping("/{id}")
     public Category findId( @PathVariable("id") Long id){
 
         return categoryRepository.findById(id).orElse(null);
     }
+    */
+
+
+    private CategoryService categoryService;
+
+
+    public CategoryController(CategoryService categoryService) {
+        this.categoryService = categoryService;
+    }
+
+    @GetMapping
+    public List<Category> findAll(){
+      return  categoryService.findAll();
+    }
+
+
+    @GetMapping("/{id}")
+    public Category findId( @PathVariable("id") Long id){
+         return categoryService.findById(id);
+    }
+
 
 }
