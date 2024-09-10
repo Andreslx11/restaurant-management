@@ -1,18 +1,15 @@
 package com.company.restaurantmanagemant.expose.controller;
 
 
+import com.company.restaurantmanagemant.application.dto.category.CategoryDto;
+import com.company.restaurantmanagemant.application.dto.category.CategorySmallDto;
 import com.company.restaurantmanagemant.application.service.CategoryService;
-import com.company.restaurantmanagemant.persistence.entity.Category;
-import com.company.restaurantmanagemant.persistence.repository.CategoryRepository;
-import lombok.RequiredArgsConstructor;
-
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-
 
 
 // Spring Stereotype annotation
@@ -52,14 +49,14 @@ public class CategoryController {
     }
 
     @GetMapping
-    public List<Category> findAll(){
-      return  categoryService.findAll();
+    public List<CategorySmallDto> findAll() {
+        return categoryService.findAll();
     }
 
 
     @GetMapping("/{id}")
-    public Category findId( @PathVariable("id") Long id){
-         return categoryService.findById(id);
+    public CategoryDto findId(@PathVariable("id") Long id) {
+        return categoryService.findById(id);
     }
 
 
